@@ -1,0 +1,17 @@
+node_modules/
+dist/
+.env
+.env.local
+.vercel
+.DS_Store
+*.log
+.claude/
+
+# Sensitive — do not commit
+namecheap-order-*.pdf
+*.pem
+*.key
+*credentials*
+
+# Stray root files (abandoned root lock from before the client/server split)
+/package-lock.json
