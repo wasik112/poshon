@@ -1,19 +1,22 @@
+import { useTranslation } from 'react-i18next';
+
 export default function LoadingScreen({ error, onRetry }) {
+  const { t } = useTranslation();
   return (
     <div className="loading-screen">
       <div className="loading-mark">🐾</div>
       {error ? (
         <>
-          <h2>Couldn't reach the server</h2>
+          <h2>{t('loading.errorTitle')}</h2>
           <p>{error.message}</p>
           <button className="btn btn-primary" onClick={onRetry}>
-            Try again
+            {t('loading.retry')}
           </button>
         </>
       ) : (
         <>
-          <h2>Loading POSHON…</h2>
-          <p>Fetching site content from the backend.</p>
+          <h2>{t('loading.title')}</h2>
+          <p>{t('loading.intro')}</p>
         </>
       )}
     </div>

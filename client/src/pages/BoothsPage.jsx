@@ -1,4 +1,5 @@
 import { useState, useMemo, useRef, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { MapContainer, TileLayer, Marker, Popup, ZoomControl, useMap } from 'react-leaflet';
 import L from 'leaflet';
 import markerIcon2x from 'leaflet/dist/images/marker-icon-2x.png';
@@ -39,6 +40,7 @@ function MapResizer({ trigger }) {
 }
 
 export default function BoothsPage() {
+  const { t } = useTranslation();
   const { locations } = usePageData();
   const [focused, setFocused] = useState(null);
   const [isFullscreen, setFullscreen] = useState(false);
@@ -72,9 +74,9 @@ export default function BoothsPage() {
     <main className="booths-page">
       <section className="page-hero">
         <div className="container">
-          <span className="eyebrow">Where we work</span>
-          <h1>Our Booth Locations</h1>
-          <p>Find a POSHON street-dog booth near you. Tap any pin or card to see details. Click the map to go fullscreen.</p>
+          <span className="eyebrow">{t('booths.eyebrow')}</span>
+          <h1>{t('booths.title')}</h1>
+          <p>{t('booths.intro')}</p>
         </div>
       </section>
 
@@ -85,10 +87,10 @@ export default function BoothsPage() {
               type="button"
               className="map-fs-toggle"
               onClick={() => setFullscreen((v) => !v)}
-              aria-label={isFullscreen ? 'Exit fullscreen' : 'Enter fullscreen'}
+              aria-label={isFullscreen ? t('booths.exitFullscreen') : t('booths.fullscreen')}
             >
               <i className={`fas ${isFullscreen ? 'fa-compress' : 'fa-expand'}`} />
-              <span>{isFullscreen ? 'Exit fullscreen' : 'Fullscreen'}</span>
+              <span>{isFullscreen ? t('booths.exitFullscreen') : t('booths.fullscreen')}</span>
             </button>
 
             <MapContainer
@@ -133,8 +135,8 @@ export default function BoothsPage() {
           </div>
 
           <aside className={`booths-list ${isFullscreen ? 'is-hidden' : ''}`}>
-            <h3>{locations.length} booth{locations.length === 1 ? '' : 's'} in Dhaka</h3>
-            <p className="booths-list-help">Click a card to zoom the map.</p>
+            <h3>{t('booths.count', { count: locations.length })}</h3>
+            <p className="booths-list-help">{t('booths.tip')}</p>
             <div className="booths-list-items">
               {locations.map((loc) => (
                 <button

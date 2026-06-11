@@ -1,32 +1,77 @@
 import { useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
+import LanguageSwitcher from './LanguageSwitcher.jsx';
 
-export default function Header({ brand, nav, topContact, onToggleAdmin, adminMode }) {
+const ROUTE_BY_LABEL = {
+  Home: '/',
+  About: '/about',
+  Project: '/project',
+  Team: '/team',
+  Blog: '/blog',
+  Locations: '/booths',
+  Contact: '/contact'
+};
+
+function DropdownItem({ item, t, onItemClick }) {
+  const [open, setOpen] = useState(false);
+  return (
+    <div
+      className={`nav-dropdown ${open ? 'is-open' : ''}`}
+      onMouseEnter={() => setOpen(true)}
+      onMouseLeave={() => setOpen(false)}
+    >
+      <button
+        type="button"
+        className="nav-dropdown-trigger"
+        onClick={() => setOpen((v) => !v)}
+        aria-expanded={open}
+      >
+        {t(`nav.${item.label}`, item.label)} <i className="fas fa-chevron-down nav-chevron" />
+      </button>
+      <div className="nav-dropdown-panel" role="menu">
+        {item.children.map((child) => (
+          <NavLink
+            key={child.label}
+            to={child.route}
+            onClick={() => { setOpen(false); onItemClick(); }}
+            className={({ isActive }) => (isActive ? 'is-active' : '')}
+          >
+            {t(`nav.${child.label}`, child.label)}
+          </NavLink>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+export default function Header({ brand, nav, onToggleAdmin, adminMode }) {
+  const { t } = useTranslation();
   const [menuOpen, setMenuOpen] = useState(false);
+  const closeMenu = () => setMenuOpen(false);
 
-  const renderNavLink = (item) => {
-    if (item.label === 'Locations') {
+  const renderNavItem = (item) => {
+    if (item.children && item.children.length) {
+      return <DropdownItem key={item.label} item={item} t={t} onItemClick={closeMenu} />;
+    }
+    const route = ROUTE_BY_LABEL[item.label];
+    const label = t(`nav.${item.label}`, item.label);
+    if (route) {
       return (
         <NavLink
           key={item.label}
-          to="/booths"
-          onClick={() => setMenuOpen(false)}
+          to={route}
+          end={route === '/'}
+          onClick={closeMenu}
           className={({ isActive }) => (isActive ? 'is-active' : '')}
         >
-          {item.label}
+          {label}
         </NavLink>
       );
     }
-    if (item.label === 'Home') {
-      return (
-        <Link key={item.label} to="/" onClick={() => setMenuOpen(false)}>
-          {item.label}
-        </Link>
-      );
-    }
     return (
-      <a key={item.href} href={`/${item.href}`} onClick={() => setMenuOpen(false)}>
-        {item.label}
+      <a key={item.label} href={item.href || '#'} onClick={closeMenu}>
+        {label}
       </a>
     );
   };
@@ -34,7 +79,7 @@ export default function Header({ brand, nav, topContact, onToggleAdmin, adminMod
   return (
     <header className="site-header">
       <div className="container header-row">
-        <Link className="brand" to="/">
+        <Link className="brand" to="/" onClick={closeMenu}>
           <span className="brand-mark"><i className="fas fa-paw" /></span>
           <span className="brand-text">
             <strong>{brand.name}</strong>
@@ -44,7 +89,7 @@ export default function Header({ brand, nav, topContact, onToggleAdmin, adminMod
 
         <button
           className="nav-toggle"
-          aria-label="Toggle menu"
+          aria-label={t('nav.toggleMenu')}
           aria-expanded={menuOpen}
           onClick={() => setMenuOpen((v) => !v)}
         >
@@ -52,17 +97,14 @@ export default function Header({ brand, nav, topContact, onToggleAdmin, adminMod
         </button>
 
         <nav className={`main-nav ${menuOpen ? 'is-open' : ''}`}>
-          {nav.map(renderNavLink)}
+          {nav.map(renderNavItem)}
           <button className="admin-toggle" onClick={onToggleAdmin}>
-            {adminMode ? 'Close Admin' : 'Edit Content'}
+            {adminMode ? t('nav.closeAdmin') : t('nav.editContent')}
           </button>
         </nav>
 
-        <div className="top-contact">
-          <small>{topContact.label}</small>
-          <strong>
-            <i className="fas fa-phone" /> {topContact.phone}
-          </strong>
+        <div className="header-right">
+          <LanguageSwitcher />
         </div>
       </div>
     </header>

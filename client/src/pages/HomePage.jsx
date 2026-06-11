@@ -6,7 +6,10 @@ import CallToAction from '../components/CallToAction.jsx';
 import Process from '../components/Process.jsx';
 import Stats from '../components/Stats.jsx';
 import Services from '../components/Services.jsx';
-import Pets from '../components/Pets.jsx';
+import WaysToHelp from '../components/WaysToHelp.jsx';
+import BlogPreview from '../components/BlogPreview.jsx';
+import Events from '../components/Events.jsx';
+import Partners from '../components/Partners.jsx';
 import Locations from '../components/Locations.jsx';
 import { usePageData } from '../components/Layout.jsx';
 
@@ -24,7 +27,10 @@ export default function HomePage() {
       <Process process={site.process} />
       <Stats items={site.stats} />
       <Services services={site.services} />
-      <Pets pets={site.pets} />
+      <WaysToHelp data={site.waysToHelp} />
+      <BlogPreview data={site.blog} />
+      <Events data={site.events} />
+      <Partners data={site.partners} />
       <Locations locations={locations} onOpenMap={goToBooths} />
     </main>
   );

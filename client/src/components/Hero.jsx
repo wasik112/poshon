@@ -1,4 +1,7 @@
+import { useTranslation } from 'react-i18next';
+
 export default function Hero({ hero, onPrimary }) {
+  const { t } = useTranslation();
   return (
     <section id="home" className="hero">
       <div className="container hero-grid">
@@ -26,7 +29,7 @@ export default function Hero({ hero, onPrimary }) {
           <div className="hero-art-frame" style={{ backgroundImage: `url(${hero.image})` }} />
           <div className="hero-art-badge">
             <i className="fas fa-paw" />
-            <span>Trusted by 500+ families</span>
+            <span>{t('hero.badge')}</span>
           </div>
         </div>
       </div>

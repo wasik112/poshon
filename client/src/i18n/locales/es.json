@@ -1,0 +1,155 @@
+{
+  "nav": {
+    "Home": "Inicio",
+    "Who We Are": "Quiénes somos",
+    "About Us": "Sobre nosotros",
+    "Our Team": "Nuestro equipo",
+    "Project": "Proyecto",
+    "Resources": "Recursos",
+    "Blog": "Blog",
+    "Booth Locations": "Ubicaciones",
+    "Activists": "Activistas",
+    "Get Involved": "Participa",
+    "Donate": "Donar",
+    "Volunteer": "Voluntariado",
+    "Sponsor a Dog": "Apadrina un perro",
+    "Contact": "Contacto",
+    "toggleMenu": "Abrir/cerrar menú",
+    "editContent": "Editar contenido",
+    "closeAdmin": "Cerrar admin"
+  },
+  "hero": {
+    "badge": "Más de 500 familias confían en nosotros"
+  },
+  "locations": {
+    "eyebrow": "Dónde ayudamos",
+    "title": "Ubicaciones de los puestos",
+    "viewOnMap": "Ver en el mapa",
+    "seeAll": "Ver todos los puestos en el mapa"
+  },
+  "booths": {
+    "eyebrow": "Dónde trabajamos",
+    "title": "Nuestras ubicaciones",
+    "intro": "Encuentra un puesto POSHON cerca de ti. Toca cualquier pin o tarjeta para ver detalles. Haz clic en el mapa para pantalla completa.",
+    "fullscreen": "Pantalla completa",
+    "exitFullscreen": "Salir pantalla completa",
+    "count": "{{count}} puesto en Daca",
+    "count_other": "{{count}} puestos en Daca",
+    "tip": "Haz clic en una tarjeta para acercar el mapa."
+  },
+  "about": {
+    "pageIntro": "Conoce quiénes somos, qué hacemos y cómo POSHON ayuda a los perros callejeros de Daca."
+  },
+  "team": {
+    "ctaFull": "Conoce al equipo completo"
+  },
+  "blog": {
+    "ctaAll": "Leer todas las historias",
+    "readMore": "Leer más",
+    "back": "Volver a todas las historias",
+    "by": "Por {{author}}",
+    "readMins": "{{mins}} min de lectura"
+  },
+  "contact": {
+    "heroEyebrow": "Ponte en contacto",
+    "heroTitle": "Contacta a POSHON",
+    "heroIntro": "¿Preguntas sobre adopción, voluntariado o apoyar nuestro trabajo? Nos encantaría escucharte.",
+    "cards": {
+      "visit": "Visítanos",
+      "call": "Llámanos",
+      "email": "Escríbenos",
+      "hours": "Horario"
+    },
+    "form": {
+      "sectionEyebrow": "Envíanos un mensaje",
+      "sectionTitle": "Cuéntanos",
+      "sectionIntro": "Completa el formulario y nuestro equipo te responderá en 1 o 2 días hábiles. Para emergencias (perros heridos) por favor llama al {{phone}}.",
+      "bullets": {
+        "adoption": "Consultas de adopción",
+        "volunteer": "Inscripción de voluntariado",
+        "sponsor": "Apadrinamientos y donaciones",
+        "media": "Medios y alianzas"
+      },
+      "name": "Tu nombre",
+      "namePlaceholder": "Nombre completo",
+      "email": "Correo electrónico",
+      "emailPlaceholder": "tu@ejemplo.com",
+      "subject": "Asunto",
+      "subjectPlaceholder": "¿De qué se trata?",
+      "message": "Mensaje",
+      "messagePlaceholder": "Cuéntanos cómo podemos ayudar...",
+      "send": "Enviar mensaje",
+      "success": "¡Gracias! Recibimos tu mensaje y nos pondremos en contacto pronto.",
+      "error": "Por favor completa nombre, correo y mensaje antes de enviar.",
+      "demoNote": "Este es un formulario de demostración — los mensajes aún no se envían a un buzón real."
+    }
+  },
+  "activists": {
+    "detail": {
+      "back": "Volver a todos los activistas"
+    }
+  },
+  "volunteers": {
+    "applyCta": "Solicitar voluntariado",
+    "detail": {
+      "back": "Volver a todos los voluntarios",
+      "viewProfile": "Ver perfil",
+      "postsEyebrow": "Desde el terreno",
+      "postsHeading": "Publicaciones de {{name}}",
+      "noPosts": "{{name}} aún no ha publicado en el sitio. Vuelve pronto."
+    },
+    "apply": {
+      "eyebrow": "Únete al equipo",
+      "title": "Solicita ser voluntario en POSHON",
+      "intro": "Cuéntanos un poco sobre ti y cómo te gustaría ayudar. Nuestro equipo te contactará en pocos días.",
+      "whyEyebrow": "Qué recibes",
+      "whyTitle": "Voluntariado con nosotros",
+      "whyBody": "Todos son bienvenidos — estudiantes, profesionales, jubilados. Nosotros proporcionamos la formación; tú aportas el tiempo. No hay compromiso mínimo.",
+      "bullets": {
+        "training": "Formación gratuita en rescate y cuidado",
+        "flexible": "Horarios flexibles — elige tus días",
+        "community": "Comunidad amigable de amantes de los animales",
+        "impact": "Ve tu impacto en un solo fin de semana"
+      },
+      "backToList": "Volver a la lista de voluntarios",
+      "success": "¡Gracias! Recibimos tu solicitud. Te contactaremos en 2–3 días.",
+      "error": "Por favor completa nombre, correo y por qué quieres ser voluntario.",
+      "form": {
+        "phone": "Teléfono (opcional)",
+        "age": "Edad",
+        "area": "Área de interés",
+        "days": "Días disponibles",
+        "why": "¿Por qué quieres ser voluntario?",
+        "whyPlaceholder": "Cuéntanos qué te atrae de POSHON y cualquier experiencia relevante.",
+        "submit": "Enviar solicitud"
+      },
+      "areas": {
+        "rescue": "Equipo de rescate (captura, transporte)",
+        "booth": "Servicio en puesto (alimentación, información)",
+        "medical": "Campañas médicas (asistencia veterinaria)",
+        "admin": "Administración y redes sociales",
+        "other": "Otro / asígnenme"
+      },
+      "dayLabels": {
+        "weekdays": "Días laborables",
+        "saturday": "Sábado",
+        "sunday": "Domingo"
+      }
+    }
+  },
+  "notFound": {
+    "code": "404",
+    "title": "Página no encontrada",
+    "intro": "La página que intentaste abrir no existe. Puede haber sido movida o renombrada.",
+    "back": "Volver al inicio"
+  },
+  "loading": {
+    "title": "Cargando POSHON…",
+    "intro": "Obteniendo contenido del sitio.",
+    "errorTitle": "No se pudo conectar al servidor",
+    "retry": "Reintentar"
+  },
+  "common": {
+    "required": "*"
+  }
+}

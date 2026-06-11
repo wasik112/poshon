@@ -1,0 +1,155 @@
+{
+  "nav": {
+    "Home": "Home",
+    "Who We Are": "Who We Are",
+    "About Us": "About Us",
+    "Our Team": "Our Team",
+    "Project": "Project",
+    "Resources": "Resources",
+    "Blog": "Blog",
+    "Booth Locations": "Booth Locations",
+    "Activists": "Activists",
+    "Get Involved": "Get Involved",
+    "Donate": "Donate",
+    "Volunteer": "Volunteer",
+    "Sponsor a Dog": "Sponsor a Dog",
+    "Contact": "Contact",
+    "toggleMenu": "Toggle menu",
+    "editContent": "Edit Content",
+    "closeAdmin": "Close Admin"
+  },
+  "hero": {
+    "badge": "Trusted by 500+ families"
+  },
+  "locations": {
+    "eyebrow": "Where we help",
+    "title": "Street Dog Booth Locations",
+    "viewOnMap": "View on Map",
+    "seeAll": "See All Booths on Live Map"
+  },
+  "booths": {
+    "eyebrow": "Where we work",
+    "title": "Our Booth Locations",
+    "intro": "Find a POSHON street-dog booth near you. Tap any pin or card to see details. Click the map to go fullscreen.",
+    "fullscreen": "Fullscreen",
+    "exitFullscreen": "Exit fullscreen",
+    "count": "{{count}} booth in Dhaka",
+    "count_other": "{{count}} booths in Dhaka",
+    "tip": "Click a card to zoom the map."
+  },
+  "about": {
+    "pageIntro": "Learn who we are, what we do, and how POSHON helps street dogs across Dhaka."
+  },
+  "team": {
+    "ctaFull": "Meet the full team"
+  },
+  "blog": {
+    "ctaAll": "Read all stories",
+    "readMore": "Read more",
+    "back": "Back to all stories",
+    "by": "By {{author}}",
+    "readMins": "{{mins}} min read"
+  },
+  "contact": {
+    "heroEyebrow": "Get in touch",
+    "heroTitle": "Contact POSHON",
+    "heroIntro": "Questions about adopting, volunteering, or supporting our work? We would love to hear from you.",
+    "cards": {
+      "visit": "Visit us",
+      "call": "Call us",
+      "email": "Email us",
+      "hours": "Hours"
+    },
+    "form": {
+      "sectionEyebrow": "Send a message",
+      "sectionTitle": "Drop us a line",
+      "sectionIntro": "Fill out the form and our team will get back to you within 1–2 working days. For emergencies (injured street dogs), please call {{phone}} instead.",
+      "bullets": {
+        "adoption": "Adoption enquiries",
+        "volunteer": "Volunteer signup",
+        "sponsor": "Sponsorships & donations",
+        "media": "Media & partnerships"
+      },
+      "name": "Your name",
+      "namePlaceholder": "Full name",
+      "email": "Email",
+      "emailPlaceholder": "you@example.com",
+      "subject": "Subject",
+      "subjectPlaceholder": "What is this about?",
+      "message": "Message",
+      "messagePlaceholder": "Tell us how we can help...",
+      "send": "Send message",
+      "success": "Thanks! We received your message and will be in touch soon.",
+      "error": "Please fill in name, email, and message before sending.",
+      "demoNote": "This is a demo form — submissions are not yet sent to a real inbox."
+    }
+  },
+  "activists": {
+    "detail": {
+      "back": "Back to all activists"
+    }
+  },
+  "volunteers": {
+    "applyCta": "Apply to volunteer",
+    "detail": {
+      "back": "Back to all volunteers",
+      "viewProfile": "View profile",
+      "postsEyebrow": "From the field",
+      "postsHeading": "Posts by {{name}}",
+      "noPosts": "{{name}} hasn't published a post on the site yet. Check back soon."
+    },
+    "apply": {
+      "eyebrow": "Join the team",
+      "title": "Apply to volunteer with POSHON",
+      "intro": "Tell us a bit about yourself and how you would like to help. Our team will reach out within a few days.",
+      "whyEyebrow": "What you get",
+      "whyTitle": "Volunteer with us",
+      "whyBody": "Everyone is welcome — students, professionals, retirees. We provide the training; you provide the time. There is no minimum commitment.",
+      "bullets": {
+        "training": "Free training in rescue and care",
+        "flexible": "Flexible hours — choose your own days",
+        "community": "Friendly community of animal lovers",
+        "impact": "See your impact within a single weekend"
+      },
+      "backToList": "Back to volunteer list",
+      "success": "Thanks! Your application is in. We will get back to you within 2–3 days.",
+      "error": "Please fill in name, email, and why you want to volunteer.",
+      "form": {
+        "phone": "Phone (optional)",
+        "age": "Age",
+        "area": "Area of interest",
+        "days": "Days available",
+        "why": "Why do you want to volunteer?",
+        "whyPlaceholder": "Tell us what draws you to POSHON and any relevant experience.",
+        "submit": "Submit application"
+      },
+      "areas": {
+        "rescue": "Rescue team (catching, transport)",
+        "booth": "Booth duty (feeding, info desk)",
+        "medical": "Medical camps (vet assistance)",
+        "admin": "Admin & social media",
+        "other": "Other / let us assign"
+      },
+      "dayLabels": {
+        "weekdays": "Weekdays",
+        "saturday": "Saturday",
+        "sunday": "Sunday"
+      }
+    }
+  },
+  "notFound": {
+    "code": "404",
+    "title": "Page not found",
+    "intro": "The page you tried to open does not exist. It might have been moved or renamed.",
+    "back": "Back to home"
+  },
+  "loading": {
+    "title": "Loading POSHON…",
+    "intro": "Fetching site content from the backend.",
+    "errorTitle": "Couldn't reach the server",
+    "retry": "Try again"
+  },
+  "common": {
+    "required": "*"
+  }
+}

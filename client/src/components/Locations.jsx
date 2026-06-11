@@ -1,12 +1,14 @@
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 export default function Locations({ locations }) {
+  const { t } = useTranslation();
   return (
     <section id="locations" className="locations-section">
       <div className="container">
         <div className="section-head">
-          <span className="eyebrow">Where we help</span>
-          <h2>Street Dog Booth Locations</h2>
+          <span className="eyebrow">{t('locations.eyebrow')}</span>
+          <h2>{t('locations.title')}</h2>
         </div>
         <div className="locations-grid">
           {locations.map((location) => (
@@ -18,7 +20,7 @@ export default function Locations({ locations }) {
                 <h3>{location.name}</h3>
                 <p>{location.description}</p>
                 <Link className="btn btn-link" to="/booths">
-                  View on Map <i className="fas fa-arrow-right" />
+                  {t('locations.viewOnMap')} <i className="fas fa-arrow-right" />
                 </Link>
               </div>
             </article>
@@ -27,7 +29,7 @@ export default function Locations({ locations }) {
         <div className="locations-cta">
           <Link className="btn btn-primary btn-xl" to="/booths">
             <i className="fas fa-map-location-dot" />
-            See All Booths on Live Map
+            {t('locations.seeAll')}
             <i className="fas fa-arrow-right" />
           </Link>
         </div>
