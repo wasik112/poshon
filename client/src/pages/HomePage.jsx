@@ -1,9 +1,9 @@
 import { useNavigate } from 'react-router-dom';
-import Hero from '../components/Hero.jsx';
+import HeroSlider from '../components/HeroSlider.jsx';
 import ServicesStrip from '../components/ServicesStrip.jsx';
 import About from '../components/About.jsx';
 import CallToAction from '../components/CallToAction.jsx';
-import Process from '../components/Process.jsx';
+import StreetDogs from '../components/StreetDogs.jsx';
 import Stats from '../components/Stats.jsx';
 import Services from '../components/Services.jsx';
 import WaysToHelp from '../components/WaysToHelp.jsx';
@@ -12,6 +12,7 @@ import Events from '../components/Events.jsx';
 import Partners from '../components/Partners.jsx';
 import Locations from '../components/Locations.jsx';
 import { usePageData } from '../components/Layout.jsx';
+import { getVisibleBanners } from '../lib/banners.js';
 
 export default function HomePage() {
   const { site, locations } = usePageData();
@@ -20,11 +21,11 @@ export default function HomePage() {
 
   return (
     <main>
-      <Hero hero={site.hero} onPrimary={goToBooths} />
+      <HeroSlider banners={getVisibleBanners(site)} onPrimary={goToBooths} />
       <ServicesStrip items={site.servicesStrip} />
       <About about={site.about} />
       <CallToAction cta={site.cta} />
-      <Process process={site.process} />
+      <StreetDogs data={site.streetDogs} />
       <Stats items={site.stats} />
       <Services services={site.services} />
       <WaysToHelp data={site.waysToHelp} />

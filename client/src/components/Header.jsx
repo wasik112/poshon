@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import LanguageSwitcher from './LanguageSwitcher.jsx';
+import { useAuth } from '../auth/AuthProvider.jsx';
+import { logout } from '../services/auth.js';
 
 const ROUTE_BY_LABEL = {
   Home: '/',
@@ -45,8 +47,10 @@ function DropdownItem({ item, t, onItemClick }) {
   );
 }
 
-export default function Header({ brand, nav, onToggleAdmin, adminMode }) {
+export default function Header({ brand, nav }) {
   const { t } = useTranslation();
+  const { user, profile, isAdmin, role, approved } = useAuth();
+  const isMember = approved && (role === 'volunteer' || role === 'activist');
   const [menuOpen, setMenuOpen] = useState(false);
   const closeMenu = () => setMenuOpen(false);
 
@@ -98,12 +102,37 @@ export default function Header({ brand, nav, onToggleAdmin, adminMode }) {
 
         <nav className={`main-nav ${menuOpen ? 'is-open' : ''}`}>
           {nav.map(renderNavItem)}
-          <button className="admin-toggle" onClick={onToggleAdmin}>
-            {adminMode ? t('nav.closeAdmin') : t('nav.editContent')}
-          </button>
+          {isAdmin && (
+            <NavLink className="admin-toggle" to="/admin" onClick={closeMenu}>
+              <i className="fas fa-gauge-high" /> {t('nav.dashboard', 'Dashboard')}
+            </NavLink>
+          )}
+          {isMember && (
+            <NavLink className="admin-toggle" to="/member" onClick={closeMenu}>
+              <i className="fas fa-gauge-high" /> {t('nav.dashboard', 'Dashboard')}
+            </NavLink>
+          )}
         </nav>
 
         <div className="header-right">
+          {user ? (
+            <div className="header-account">
+              <Link className="header-account-link" to="/account" onClick={closeMenu}>
+                <i className="fas fa-circle-user" />
+                <span>{profile?.name || user.displayName || t('auth.account')}</span>
+              </Link>
+              <button className="header-logout" onClick={() => { closeMenu(); logout(); }}>
+                {t('auth.logout')}
+              </button>
+            </div>
+          ) : (
+            <div className="header-auth">
+              <Link className="header-login" to="/login" onClick={closeMenu}>{t('auth.login')}</Link>
+              <Link className="btn btn-primary header-register" to="/register" onClick={closeMenu}>
+                {t('auth.register')}
+              </Link>
+            </div>
+          )}
           <LanguageSwitcher />
         </div>
       </div>

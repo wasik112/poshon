@@ -1,6 +1,7 @@
 import { useParams, Link, Navigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { usePageData } from '../components/Layout.jsx';
+import { usePosts } from '../hooks/usePosts.js';
 
 function formatDate(iso) {
   if (!iso) return '';
@@ -13,8 +14,19 @@ export default function BlogPostPage() {
   const { id } = useParams();
   const { t } = useTranslation();
   const { site } = usePageData();
+  const { posts: userPosts, ready } = usePosts();
 
-  const post = site.blog?.posts?.find((p) => String(p.id) === String(id));
+  const allPosts = [...userPosts, ...(site.blog?.posts || [])];
+  const post = allPosts.find((p) => String(p.id) === String(id));
+
+  // User posts arrive asynchronously — wait before deciding it's missing.
+  if (!post && !ready) {
+    return (
+      <main className="blog-post-page">
+        <section className="blog-post-hero"><div className="container"><p>{t('loading.title')}</p></div></section>
+      </main>
+    );
+  }
   if (!post) return <Navigate to="/blog" replace />;
 
   const body = Array.isArray(post.content)

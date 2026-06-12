@@ -1,0 +1,74 @@
+rules_version = '2';
+
+// POSHON Firestore security rules.
+//
+// Roles live in users/{uid}.role and are the source of truth for access.
+// The public site reads site content; only admins may write it. Visitors
+// self-register as volunteer/activist only — 'admin' can never be
+// self-assigned; admins are created by existing admins.
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    // An admin is a signed-in user whose own profile doc says role == 'admin'.
+    function isAdmin() {
+      return isSignedIn()
+        && exists(/databases/$(database)/documents/users/$(request.auth.uid))
+        && get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'admin';
+    }
+
+    // Site content tree ({ site, locations }) at content/main.
+    match /content/{docId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    // User profiles.
+    match /users/{uid} {
+      // Readable by the owner or any admin.
+      allow read: if isSignedIn() && (request.auth.uid == uid || isAdmin());
+
+      // Self-registration: only for your own doc, and only as volunteer/activist.
+      allow create: if isSignedIn()
+        && request.auth.uid == uid
+        && request.resource.data.role in ['volunteer', 'activist'];
+
+      // Owners may update their own profile but NOT change their role or
+      // approval status (only admins can approve).
+      allow update: if isSignedIn()
+        && request.auth.uid == uid
+        && request.resource.data.role == resource.data.role
+        && request.resource.data.approved == resource.data.approved;
+
+      // Admins may create/update/remove any profile, including granting 'admin'.
+      allow create, update, delete: if isAdmin();
+    }
+
+    // Blog posts (user-generated). Public can read; volunteers, activists
+    // and admins can create their own; authors or admins can edit/delete.
+    function profileData() {
+      return get(/databases/$(database)/documents/users/$(request.auth.uid)).data;
+    }
+    match /posts/{postId} {
+      allow read: if true;
+      // Only APPROVED volunteers/activists (or admins) may publish.
+      allow create: if isSignedIn()
+        && exists(/databases/$(database)/documents/users/$(request.auth.uid))
+        && request.resource.data.authorId == request.auth.uid
+        && (
+          isAdmin() ||
+          (profileData().role in ['volunteer', 'activist'] && profileData().approved == true)
+        );
+      allow update, delete: if isSignedIn()
+        && (resource.data.authorId == request.auth.uid || isAdmin());
+    }
+
+    // Everything else denied.
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

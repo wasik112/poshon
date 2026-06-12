@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
-import { api } from '../services/api.js';
+import { fetchContent, subscribeContent } from '../services/content.js';
 
 export function useSiteData() {
   const [site, setSite] = useState(null);
@@ -11,10 +11,7 @@ export function useSiteData() {
     setStatus('loading');
     setError(null);
     try {
-      const [siteData, locationData] = await Promise.all([
-        api.getSite(),
-        api.getLocations()
-      ]);
+      const { site: siteData, locations: locationData } = await fetchContent();
       setSite(siteData);
       setLocations(locationData);
       setStatus('ready');
@@ -26,6 +23,20 @@ export function useSiteData() {
 
   useEffect(() => {
     load();
+
+    // Live updates: whenever an admin saves, the public site refreshes
+    // automatically — no manual reload needed.
+    let unsubscribe = () => {};
+    try {
+      unsubscribe = subscribeContent(({ site: s, locations: l }) => {
+        setSite(s);
+        setLocations(l);
+        setStatus('ready');
+      });
+    } catch {
+      /* Firestore unavailable — initial fetchContent fallback still applies. */
+    }
+    return () => unsubscribe();
   }, [load]);
 
   return { site, locations, status, error, reload: load, setSite, setLocations };

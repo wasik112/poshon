@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route, Navigate, Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useSiteData } from './hooks/useSiteData.js';
+import { AuthProvider } from './auth/AuthProvider.jsx';
 import Layout from './components/Layout.jsx';
 import LoadingScreen from './components/LoadingScreen.jsx';
 import HomePage from './pages/HomePage.jsx';
@@ -16,6 +17,12 @@ import VolunteerApplyPage from './pages/VolunteerApplyPage.jsx';
 import VolunteerDetailPage from './pages/VolunteerDetailPage.jsx';
 import ActivistsPage from './pages/ActivistsPage.jsx';
 import ActivistDetailPage from './pages/ActivistDetailPage.jsx';
+import LoginPage from './pages/LoginPage.jsx';
+import RegisterPage from './pages/RegisterPage.jsx';
+import AccountPage from './pages/AccountPage.jsx';
+import WritePostPage from './pages/WritePostPage.jsx';
+import AdminDashboard from './admin/AdminDashboard.jsx';
+import MemberDashboard from './member/MemberDashboard.jsx';
 
 function NotFoundPage() {
   const { t } = useTranslation();
@@ -41,35 +48,34 @@ export default function App() {
   }
 
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route
-          element={
-            <Layout
-              site={site}
-              locations={locations}
-              setSite={setSite}
-              setLocations={setLocations}
-            />
-          }
-        >
-          <Route path="/" element={<HomePage />} />
-          <Route path="/booths" element={<BoothsPage />} />
-          <Route path="/project" element={<PrototypesPage />} />
-          <Route path="/about" element={<AboutPage />} />
-          <Route path="/contact" element={<ContactPage />} />
-          <Route path="/team" element={<TeamPage />} />
-          <Route path="/blog" element={<BlogPage />} />
-          <Route path="/blog/:id" element={<BlogPostPage />} />
-          <Route path="/volunteers" element={<VolunteersPage />} />
-          <Route path="/volunteers/apply" element={<VolunteerApplyPage />} />
-          <Route path="/volunteers/:id" element={<VolunteerDetailPage />} />
-          <Route path="/activists" element={<ActivistsPage />} />
-          <Route path="/activists/:id" element={<ActivistDetailPage />} />
-          <Route path="/prototypes" element={<Navigate to="/project" replace />} />
-          <Route path="*" element={<NotFoundPage />} />
-        </Route>
-      </Routes>
-    </BrowserRouter>
+    <AuthProvider>
+      <BrowserRouter>
+        <Routes>
+          <Route element={<Layout site={site} locations={locations} />}>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/booths" element={<BoothsPage />} />
+            <Route path="/project" element={<PrototypesPage />} />
+            <Route path="/about" element={<AboutPage />} />
+            <Route path="/contact" element={<ContactPage />} />
+            <Route path="/team" element={<TeamPage />} />
+            <Route path="/blog" element={<BlogPage />} />
+            <Route path="/blog/new" element={<WritePostPage />} />
+            <Route path="/blog/:id" element={<BlogPostPage />} />
+            <Route path="/volunteers" element={<VolunteersPage />} />
+            <Route path="/volunteers/apply" element={<VolunteerApplyPage />} />
+            <Route path="/volunteers/:id" element={<VolunteerDetailPage />} />
+            <Route path="/activists" element={<ActivistsPage />} />
+            <Route path="/activists/:id" element={<ActivistDetailPage />} />
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/register" element={<RegisterPage />} />
+            <Route path="/account" element={<AccountPage />} />
+            <Route path="/prototypes" element={<Navigate to="/project" replace />} />
+            <Route path="*" element={<NotFoundPage />} />
+          </Route>
+          <Route path="/admin/*" element={<AdminDashboard />} />
+          <Route path="/member/*" element={<MemberDashboard />} />
+        </Routes>
+      </BrowserRouter>
+    </AuthProvider>
   );
 }

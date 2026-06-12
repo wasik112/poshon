@@ -151,5 +151,32 @@
   },
   "common": {
     "required": "*"
+  },
+  "auth": {
+    "login": "Log in",
+    "register": "Register",
+    "logout": "Log out",
+    "account": "Account",
+    "loginTitle": "Welcome back",
+    "loginIntro": "Sign in to your volunteer or activist account.",
+    "registerTitle": "Join POSHON",
+    "registerIntro": "Create an account to get involved as a volunteer or activist.",
+    "name": "Full name",
+    "email": "Email",
+    "password": "Password",
+    "role": "I want to join as",
+    "roleVolunteer": "Volunteer",
+    "roleActivist": "Activist",
+    "submitLogin": "Log in",
+    "submitRegister": "Create account",
+    "noAccount": "Don't have an account?",
+    "haveAccount": "Already have an account?",
+    "signingIn": "Signing in…",
+    "creating": "Creating account…",
+    "accountTitle": "My account",
+    "accountRole": "Role",
+    "loginRequired": "Please log in to view this page.",
+    "loginFailed": "Login failed",
+    "registerFailed": "Registration failed"
   }
 }

@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { usePosts } from '../hooks/usePosts.js';
 
 function formatDate(iso) {
   if (!iso) return '';
@@ -10,8 +11,9 @@ function formatDate(iso) {
 
 export default function BlogPreview({ data, limit = 3 }) {
   const { t } = useTranslation();
+  const { posts: userPosts } = usePosts();
   if (!data) return null;
-  const visible = data.posts.slice(0, limit);
+  const visible = [...userPosts.filter((p) => !p.hidden), ...(data.posts || [])].slice(0, limit);
   return (
     <section id="blog" className="blog-section">
       <div className="container">
